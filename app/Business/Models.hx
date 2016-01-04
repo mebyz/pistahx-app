@@ -10,6 +10,13 @@ class Models {
   public function getUsers(){
     return Users;
   }
+
+  public static var Cars : Dynamic;
+
+  public function getCars(){
+    return Cars;
+  }
+
   public function new(db) {
       
       // MODELS & ASSOCIATIONS
@@ -25,10 +32,23 @@ class Models {
       {
         timestamps: false,
         freezeTableNames: true,
-        tableName: 'Users'
+        tableName: 'users'
+      });
+
+      Cars = db.define('cars', untyped {
+        CarId: 
+        {
+          type: DataTypes.STRING(),
+          primaryKey: true
+        },
+        CarName: { type: DataTypes.STRING() }
+      },
+      {
+        timestamps: false,
+        freezeTableNames: true,
+        tableName: 'cars'
       });
   }
   public function main() {
-
   }
 }

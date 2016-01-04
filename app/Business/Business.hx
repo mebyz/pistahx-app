@@ -55,6 +55,12 @@ class Business {
             });
           });
         
+          // sample model to db SYNC !
+          // ie : will create table if not exists
+          var model = new Model(untyped db);
+          var Cars = model.getCars();
+          Cars.sync();
+
   }
 
 
