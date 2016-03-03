@@ -1,11 +1,27 @@
-# install dependencies
-npm install
+VERT="\\033[1;32m"
+NORMAL="\\033[0;39m"
+ROUGE="\\033[1;31m"
 
-# keep track of your project's absolute path
+if [ "$mode" != "build" ] ; then
+mode=run
+fi
+
+echo "$VERT" "#YOUR_APP: triggering build in mode:$mode" "$NORMAL"
+#!/bin/bash
+if [ "$mode" = "build" ] ; then
+echo "$VERT" "#YOUR_APP: install project dependencies" "$NORMAL"
+npm install
+echo "$VERT" "#YOUR_APP: update project dependencies" "$NORMAL"
+npm update
+echo "$VERT" "#YOUR_APP: pull companion website (you must enable this step in run.sh)" "$NORMAL"
+#rm -rf site
+#git clone [YOUR FRONT REPOSITORY] site
+fi
+echo "$VERT" "#YOUR_APP: keep track of your project's absolute path" "$NORMAL"
 PROJDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# we also keep orms absolute path
+echo "$VERT" "#YOUR_APP: keep track of orms absolute path" "$NORMAL"
 cd ./node_modules/orms/ && WDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# let orms do the magic..
-# => codegen, build and run the project using your spec and business logic (./app/ folder)
-prj=$PROJDIR root=$WDIR ./build_and_run.sh
+echo "$VERT" "#YOUR_APP: let orms do the magic.." "$NORMAL"
+echo "$VERT" " => codegen, build and run the project using your spec and business logic (./app/ folder)" "$NORMAL"
+mode=$mode prj=$PROJDIR root=$WDIR ./build_and_run.sh

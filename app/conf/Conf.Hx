@@ -14,11 +14,31 @@ class Conf {
 
   public static function main() { trace('loading LOCAL conf'); }
 
-  public function new(env : String) {
+  public function new(env : String, envArgs: Dynamic = null) {
 
     if (env == 'local') {
       REDIS_HOST      = 'localhost';
       REDIS_PORT      = 6379;
+      DB_HOST         = null;
+      DB_USER         = null;
+      DB_PASSWORD     = null;
+      DB_NAME         = null;
+      DB_OPTIONS      = {
+                          dialect: 'sqlite',
+                          storage: '../db.sqlite',
+                          dialectOptions: {
+                            encrypt: true
+                          }, logging: false
+                        };
+      SESSION_TTL     = 3600; //secs
+      BASE_URL        = '/api/v1';
+      API_PORT        = 3000;
+      API_ROUTE_STATUS= '/users/me/status';
+    }
+
+   if (env == 'docker') {
+      REDIS_HOST = envArgs.ORMS_REDIS_PORT_6379_TCP_ADDR;
+      REDIS_PORT = envArgs.ORMS_REDIS_PORT_6379_TCP_PORT;
       DB_HOST         = null;
       DB_USER         = null;
       DB_PASSWORD     = null;
