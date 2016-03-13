@@ -1,5 +1,7 @@
 class Conf {
 
+  public  var APP_NAME : String;
+  public  var ELK_SERVER : String;
   public  var REDIS_HOST : String;      
   public  var REDIS_PORT: Int;      
   public  var DB_HOST: String;         
@@ -17,6 +19,8 @@ class Conf {
   public function new(env : String, envArgs: Dynamic = null) {
 
     if (env == 'local') {
+      APP_NAME      = 'orms_sample_app';
+      //ELK_SERVER      = '[YOUR_ES_SERVER_HOST]';
       REDIS_HOST      = 'localhost';
       REDIS_PORT      = 6379;
       DB_HOST         = null;
