@@ -23,8 +23,8 @@ class Business {
   //    /users (GET)
   public static function get_users(db : Sequelize, req : Dynamic, res : Dynamic, dbcacher : Dynamic, outputcacher : Dynamic, extra : Dynamic) {
    
-          var REQ1 = untyped require('path').dirname(require.main.filename) + '/../app/Business/sql/user_info1.sql';
-          var REQ2 = untyped require('path').dirname(require.main.filename) + '/../app/Business/sql/user_info2.sql'; 
+          var REQ1 = untyped require('path').dirname(require.main.filename) + '/sql/user_info1.sql';
+          var REQ2 = untyped require('path').dirname(require.main.filename) + '/sql/user_info2.sql'; 
           
           // REQS ARRAY CONTAINS OUR RAW QUERIES
           var reqs : Map<Int, String> = [

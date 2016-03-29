@@ -15,7 +15,7 @@ DB_PASSWORD:
 DB_NAME:
 DB_OPTIONS: 
   dialect: sqlite
-  storage: ../db.sqlite
+  storage: db.sqlite
   pool: 
     max: 5
     min: 0
