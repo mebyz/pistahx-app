@@ -1,4 +1,4 @@
-APP_NAME: orms_sample_app
+APP_NAME: pistahx_app
 ENV_NAME: local
 #ELK_SERVER: to be defined
 #JWT_SECRET: local_secret_key

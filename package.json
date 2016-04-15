@@ -1,7 +1,7 @@
 {
-  "name": "orms-sample-app",
+  "name": "pistahx-app",
   "version": "1.0.0",
-  "description": "sample orms app",
+  "description": "sample pistahx app",
   "main": "api.js",
   "private": true,
   "scripts": {
@@ -10,22 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mebyz/orms-sample-app.git"
+    "url": "git+https://github.com/mebyz/pistahx-app.git"
   },
   "keywords": [
-    "orms-sample-app"
+    "pistahx-app"
   ],
   "author": "e.botros@lekiosk.com",
   "license": "CC-BY-3.0",
   "bugs": {
-    "url": "https://github.com/mebyz/orms-sample-app/issues"
+    "url": "https://github.com/mebyz/pistahx-app/issues"
   },
-  "homepage": "https://github.com/mebyz/orms-sample-app#readme",
+  "homepage": "https://github.com/mebyz/pistahx-app#readme",
   "dependencies": {
     "js-yaml": "3.4.6",
     "mocha": "2.3.4",
     "mocha-junit-reporter": "1.9.1",
-    "orms": "github:mebyz/orms",
+    "pistahx": "github:mebyz/pistahx",
     "preq": "0.4.7",
     "swagger-test": "0.3.0"
   }

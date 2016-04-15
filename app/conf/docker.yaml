@@ -1,4 +1,4 @@
-APP_NAME: orms_sample_app
+APP_NAME: pistahx_app
 ENV_NAME: docker
 #ELK_SERVER: to be defined
 #JWT_SECRET: local_secret_key
@@ -7,8 +7,8 @@ CACHE_OUT_TTL_DEFAULT: 60
 #GOOGLE_CLIENT_ID: to be defined
 #GOOGLE_CLIENT_SECRET: to be defined
 #GOOGLE_CALLBACK_URL: http://localhost:3000/callback
-REDIS_HOST: envArgs.ORMS_REDIS_PORT_6379_TCP_ADDR
-REDIS_PORT: envArgs.ORMS_REDIS_PORT_6379_TCP_PORT
+REDIS_HOST: envArgs.PISTAHX_REDIS_PORT_6379_TCP_ADDR
+REDIS_PORT: envArgs.PISTAHX_REDIS_PORT_6379_TCP_PORT
 DB_HOST: to be defined
 DB_USER: to be defined
 DB_PASSWORD: to be defined

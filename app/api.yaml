@@ -1,9 +1,13 @@
 ---
 swagger: "2.0"
 info:
-  description: "orms powered Web API"
+  description: "pistahx powered Web API"
   version: "1.0.0"
-  title: orms API
+  title: pistahx API
+  x-domain: dummy.com
+  x-website: /site
+  x-localhost: localhost:3000
+  x-legacy: http://old.dummy.com/api/v1
 host: localhost:3000
 schemes:
 - http
