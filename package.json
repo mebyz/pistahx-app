@@ -30,5 +30,11 @@
     "pistahx-spec": "github:mebyz/pistahx-spec",
     "preq": "0.4.7",
     "swagger-test": "0.3.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-prompt": "^0.2.0",
+    "gulp-shell": "^0.5.2",
+    "gulp-util": "^3.0.7"
   }
 }
