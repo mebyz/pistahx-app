@@ -4,3 +4,4 @@ node_modules/
 #these files are pulled from pistahx#
 Dockerfile
 docker.sh
+site/*
