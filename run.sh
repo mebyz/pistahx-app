@@ -44,6 +44,7 @@ echo "$VERT" " => codegen, build and run the project using your spec and busines
 
 if [ "$lang" == "haxe" ] ; then
 mode=$mode prj=$PROJDIR root=$WDIR ./build_and_run.sh
+mode=$mode node $PROJDIR/distrib/out/app.js
 fi
 
 if [ "$lang" == "ts" ] ; then
