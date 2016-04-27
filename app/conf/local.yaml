@@ -27,3 +27,12 @@ SESSION_TTL: 3600
 BASE_URL: /api/v1
 API_PORT: 3000
 API_ROUTE_STATUS: /users/me/status
+#API_CORS_ALLOWED:
+#  - "http://localhost:9000"
+#  - "http://localhost:8080"
+#  - "http://localhost:3000"
+#S3_ID: "to be defined"
+#S3_KEY: "to be defined"
+#S3_BUCKET: "to be defined"
+#S3_REGION: "to be defined"
+#S3_FOLDER: "to be defined"
