@@ -22,13 +22,11 @@
   },
   "homepage": "https://github.com/mebyz/pistahx-app#readme",
   "dependencies": {
-    "js-yaml": "3.4.6",
-    "mocha": "2.3.4",
-    "mocha-junit-reporter": "1.9.1",
     "pistahx": "github:mebyz/pistahx",
     "pistahx-db": "github:mebyz/pistahx-db",
     "pistahx-spec": "github:mebyz/pistahx-spec",
-    "preq": "0.4.7",
+    "mocha": "2.3.4",
+    "mocha-junit-reporter": "1.9.1",
     "swagger-test": "0.3.0"
   },
   "devDependencies": {
