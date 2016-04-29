@@ -8,6 +8,8 @@ https://github.com/mebyz/pistahx-app uses:
 
 - https://github.com/mebyz/pistahx-spec
 
+- https://github.com/mebyz/pistahx-ui	
+
 # build & run
 
 npm install --only=dev
