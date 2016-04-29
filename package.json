@@ -22,12 +22,11 @@
   },
   "homepage": "https://github.com/mebyz/pistahx-app#readme",
   "dependencies": {
+    "mocha": "2.3.4",
+    "mocha-junit-reporter": "1.9.1",
     "pistahx": "github:mebyz/pistahx",
     "pistahx-db": "github:mebyz/pistahx-db",
     "pistahx-spec": "github:mebyz/pistahx-spec",
-    "pistahx-ui": "github:mebyz/pistahx-ui",
-    "mocha": "2.3.4",
-    "mocha-junit-reporter": "1.9.1",
     "swagger-test": "0.3.0"
   },
   "devDependencies": {

@@ -94,8 +94,7 @@ gulp.task('prebuild', function(done) {
     if (process.env.mode == 'build') {
         tasks.push('echo "$VERT" "#APP: pull companion website" "$NORMAL"');
         tasks.push('rm -rf site');
-        tasks.push('mkdir site');
-        tasks.push('cp -rf ./node_modules/pistahx-ui/* ./site/');
+        tasks.push('git clone git@github.com:mebyz/pistahx-ui.git site');
     }
     
     tasks.push('echo "$VERT" "#YOUR_APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
