@@ -27,6 +27,7 @@
     "pistahx": "github:mebyz/pistahx",
     "pistahx-db": "github:mebyz/pistahx-db",
     "pistahx-spec": "github:mebyz/pistahx-spec",
+    "sqlite3": "^3.1.3",
     "swagger-test": "0.3.0"
   },
   "devDependencies": {
