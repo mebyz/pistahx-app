@@ -3,7 +3,7 @@ import TD;
 
 class EmployeeDecorator { 
     public static function decorate(b : Employee): Employee { 
-        b.LastName+=' :)'; // sample use
+        b.lastName+=' :)'; // sample use
         return b; 
     }
 }

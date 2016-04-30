@@ -90,65 +90,61 @@ definitions:
     x-dto-model : "Employee"
     type: "object"    
     properties:   
-      EmployeeId:  
+      id:  
         x-dto-field: "EmployeeId"
         type: "integer"   
         description: "Unique identifier representing a specific Employee"    
-      LastName :   
+      lastName :   
         x-dto-field: "LastName"
         type: "string"    
         description: ""    
-      FirstName :   
+      firstName :   
         x-dto-field: "FirstName"
         type: "string"    
         description: ""    
-      Title :   
+      title :   
         x-dto-field: "Title"
         type: "string"    
         description: ""   
-      ReportsTo:    
-        x-dto-field: "ReportsTo"
-        type: "integer"   
-        description: ""   
-      BirthDate:    
+      birthDate:    
         x-dto-field: "BirthDate"
         type: "string"   
         format: "date"   
         description: ""   
-      HireDate:    
+      hireDate:    
         x-dto-field: "HireDate"
         type: "string"   
         format: "date"   
         description: ""    
-      Address :   
+      address :   
         x-dto-field: "Address"
         type: "string"    
         description: ""    
-      City :   
+      city :   
         x-dto-field: "City"
         type: "string"    
         description: ""     
-      State :   
+      state :   
         x-dto-field: "State"
         type: "string"    
         description: ""    
-      Country :   
+      country :   
         x-dto-field: "Country"
         type: "string"    
         description: ""     
-      PostalCode :   
+      postalCode :   
         x-dto-field: "PostalCode"
         type: "string"    
         description: ""      
-      Phone :   
+      phone :   
         x-dto-field: "Phone"
         type: "string"    
         description: ""    
-      Fax :   
+      fax :   
         x-dto-field: "Fax"
         type: "string"    
         description: ""     
-      Email :   
+      email :   
         x-dto-field: "Email"
         type: "string"    
         description: ""

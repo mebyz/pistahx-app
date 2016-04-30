@@ -28,22 +28,42 @@ using js.node.http.IncomingMessage;
 
 class Model extends Models { }
 
+
 // Business : BUSINESS LOGIC :
 // ---------
 class Business {
+
   public static function main() {  }
 
 
   public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
     
-    var employee = untyped __js__('db.import("models/Employee.js");');
+    var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
+
     employee   
     .findAll({    
          limit : 10
     })    
     .then(function(emps) {    
       var vb = map([emps], function(d) {
-          return EmployeeMapper.mapEmployees(d, IdentityDecorator.decorate);
+          return EmployeeMapper.mapEmployees(d, EmployeeDecorator.decorate);
+      }); 
+      sinkOutput(res, Lambda.array(vb[0]));
+      return;   
+    });
+  }
+
+  public static function get_employee(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
+    
+    var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
+
+    employee   
+    .find({
+          where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
+    })    
+    .then(function(emp) {    
+      var vb = map([emp], function(d) {
+          return EmployeeMapper.mapEmployees(d, EmployeeDecorator.decorate);
       }); 
       sinkOutput(res, Lambda.array(vb[0]));
       return;   
@@ -55,7 +75,6 @@ class Business {
     res.end(stringify(d));
     return;
   }
-
 /*
   //    /users (GET)
   public static function get_users(db : Sequelize, req : ClientRequest, res : ServerResponse, dbcacher : Dynamic, outputcacher : Dynamic, extra : Dynamic) {

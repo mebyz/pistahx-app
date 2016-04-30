@@ -103,7 +103,6 @@ gulp.task('prebuild', function(done) {
     
     tasks.push('echo "$VERT" "#YOUR_APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
     tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
-    tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
 
     tasks.push('echo "$VERT" "#APP:generate ./app/Business/TD.hx file from api.yaml with mebyz/yaml2hx" "$NORMAL"');
     tasks.push('input=./app/api.yaml output=./app/Business/TD.hx node ./node_modules/pistahx-spec/yaml2hx.js ');
