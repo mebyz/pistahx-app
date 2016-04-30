@@ -71,7 +71,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'Customer',
+    tableName: 'Customer', timestamps: false,
     freezeTableName: true
   });
 };

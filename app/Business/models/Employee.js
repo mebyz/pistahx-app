@@ -81,7 +81,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: undefined
     }
   }, {
-    tableName: 'Employee',
+    tableName: 'Employee', timestamps: false,
     freezeTableName: true
   });
 };

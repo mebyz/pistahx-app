@@ -31,3 +31,124 @@ paths:
       responses:
         200:
           description: "200 is returned"
+  /employees:
+    get:
+      operationId: employees
+      tags:
+      - "Employees"
+      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+      description: "/employees returns a list of employee"
+      responses:
+        200:
+          description: "An array of employees"
+          schema:
+            $ref: "#/definitions/Employees"
+  /employee/{EmployeeId}:
+    get:
+      operationId: employee
+      tags:
+      - "Employees"
+      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+      description: "/employee/{EmployeeId} returns an employee"
+      parameters:
+      - name: "EmployeeId"
+        in: "path"
+        description: "EmployeeId"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "An employee"
+          schema:
+            $ref: "#/definitions/Employee"
+  /employee:
+    post:
+      operationId: employee
+      tags:
+      - "Employees"
+      summary: "{'ttl':0,'xttl':0,'cachekey':'','xcachekey':''}"
+      description: "/employee saves an employee"
+      parameters:
+      - name: "employee"
+        in: "body"
+        description: "Employee to add"
+        required: true
+        schema:
+          $ref: '#/definitions/Employee'
+      responses:
+        200:
+          description: "200 is returned"
+definitions:
+  Employees:   
+    type: "object"    
+    properties:   
+      result:   
+        type: "array"   
+        items:    
+          $ref: "#/definitions/Employee"   
+  Employee:    
+    x-dto-model : "Employee"
+    type: "object"    
+    properties:   
+      EmployeeId:  
+        x-dto-field: "EmployeeId"
+        type: "integer"   
+        description: "Unique identifier representing a specific Employee"    
+      LastName :   
+        x-dto-field: "LastName"
+        type: "string"    
+        description: ""    
+      FirstName :   
+        x-dto-field: "FirstName"
+        type: "string"    
+        description: ""    
+      Title :   
+        x-dto-field: "Title"
+        type: "string"    
+        description: ""   
+      ReportsTo:    
+        x-dto-field: "ReportsTo"
+        type: "integer"   
+        description: ""   
+      BirthDate:    
+        x-dto-field: "BirthDate"
+        type: "string"   
+        format: "date"   
+        description: ""   
+      HireDate:    
+        x-dto-field: "HireDate"
+        type: "string"   
+        format: "date"   
+        description: ""    
+      Address :   
+        x-dto-field: "Address"
+        type: "string"    
+        description: ""    
+      City :   
+        x-dto-field: "City"
+        type: "string"    
+        description: ""     
+      State :   
+        x-dto-field: "State"
+        type: "string"    
+        description: ""    
+      Country :   
+        x-dto-field: "Country"
+        type: "string"    
+        description: ""     
+      PostalCode :   
+        x-dto-field: "PostalCode"
+        type: "string"    
+        description: ""      
+      Phone :   
+        x-dto-field: "Phone"
+        type: "string"    
+        description: ""    
+      Fax :   
+        x-dto-field: "Fax"
+        type: "string"    
+        description: ""     
+      Email :   
+        x-dto-field: "Email"
+        type: "string"    
+        description: ""

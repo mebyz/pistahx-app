@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'PlaylistTrack',
+    tableName: 'PlaylistTrack', timestamps: false,
     freezeTableName: true
   });
 };

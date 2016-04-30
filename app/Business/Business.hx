@@ -13,6 +13,19 @@ import promhx.Deferred;
 
 import Models;
 
+import haxe.Json.*;
+
+// THX
+import thx.core.*;
+import thx.Iterables.*;
+
+import Business_AST;
+import TD;
+
+using js.node.http.ServerResponse;
+using js.node.http.ClientRequest;
+using js.node.http.IncomingMessage;
+
 class Model extends Models { }
 
 // Business : BUSINESS LOGIC :
@@ -20,8 +33,32 @@ class Model extends Models { }
 class Business {
   public static function main() {  }
 
+
+  public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
+    
+    var employee = untyped __js__('db.import("models/Employee.js");');
+    employee   
+    .findAll({    
+         limit : 10
+    })    
+    .then(function(emps) {    
+      var vb = map([emps], function(d) {
+          return EmployeeMapper.mapEmployees(d, IdentityDecorator.decorate);
+      }); 
+      sinkOutput(res, Lambda.array(vb[0]));
+      return;   
+    });
+  }
+
+  public static function sinkOutput(res: js.node.http.ServerResponse, d : Dynamic) { 
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(stringify(d));
+    return;
+  }
+
+/*
   //    /users (GET)
-  public static function get_users(db : Sequelize, req : Dynamic, res : Dynamic, dbcacher : Dynamic, outputcacher : Dynamic, extra : Dynamic) {
+  public static function get_users(db : Sequelize, req : ClientRequest, res : ServerResponse, dbcacher : Dynamic, outputcacher : Dynamic, extra : Dynamic) {
    
           var REQ1 = untyped require('path').dirname(require.main.filename) + '/sql/user_info1.sql';
           var REQ2 = untyped require('path').dirname(require.main.filename) + '/sql/user_info2.sql'; 
@@ -109,4 +146,6 @@ class Business {
       });
       return p.promise();
   }
+
+  */
 }

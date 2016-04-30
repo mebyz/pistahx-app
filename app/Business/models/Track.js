@@ -59,7 +59,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: undefined
     }
   }, {
-    tableName: 'Track',
+    tableName: 'Track', timestamps: false,
     freezeTableName: true
   });
 };

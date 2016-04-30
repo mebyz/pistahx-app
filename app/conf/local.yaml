@@ -15,14 +15,14 @@ DB_PASSWORD:
 DB_NAME:
 DB_OPTIONS: 
   dialect: sqlite
-  storage: db.sqlite
+  storage: Chinook_Sqlite.sqlite
   pool: 
     max: 5
     min: 0
     idle: 10000
   dialectOptions:
     encrypt: true
-  logging: false
+  logging: true
 SESSION_TTL: 3600
 BASE_URL: /api/v1
 API_PORT: 3000

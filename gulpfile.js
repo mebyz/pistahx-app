@@ -50,7 +50,11 @@ gulp.task('run',  function(done) {
         if(err == null) {
             tasks= ['  echo "$VERT" "#PISTAHX: trying to start API" "$NORMAL"'];
             tasks.push('  rm -rf ./distrib/out/site');
+            tasks.push('  rm -rf ./distrib/out/models');
             tasks.push('  cp -rf ./site/dist/prod ./distrib/out/site');
+            tasks.push('  cp -rf ./app/Business/models ./distrib/out/models');
+            tasks.push('  cp -rf ./Chinook_Sqlite.sqlite ./distrib/out/');
+
             tasks.push('  ENV=$ENV node ./distrib/out/app.js');        
         } else {
             tasks= ['  echo "$ROUGE" "#!ERROR : please build first :)" "$NORMAL"'];
@@ -98,6 +102,7 @@ gulp.task('prebuild', function(done) {
     }
     
     tasks.push('echo "$VERT" "#YOUR_APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
+    tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
     tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
 
     tasks.push('echo "$VERT" "#APP:generate ./app/Business/TD.hx file from api.yaml with mebyz/yaml2hx" "$NORMAL"');

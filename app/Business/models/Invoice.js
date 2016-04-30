@@ -51,7 +51,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: undefined
     }
   }, {
-    tableName: 'Invoice',
+    tableName: 'Invoice', timestamps: false,
     freezeTableName: true
   });
 };
