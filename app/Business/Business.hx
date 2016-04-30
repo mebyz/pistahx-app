@@ -76,29 +76,11 @@ class Business {
     var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
     
     var body = Reflect.field(req,'body');
-
     var doutfields = Reflect.fields(body);
-
     return employee.find({ where: [ { 'EmployeeId' : untyped body.id } ],include: [ ],raw:false })
     .then(function(em) {
-      var vb = EmployeeMapper.mapDBEmployee(em);
-
-      trace(vb);
-      
-      var dout = untyped {};
-      for (f in doutfields){
-        if (f != 'id' 
-          &&
-          Reflect.field(vb,f) 
-           != Reflect.field(body,f) )
-        {
-          Reflect.setField(dout,f,Reflect.field(body,f));
-        }
-      
-      } 
-
-      untyped em.update(dout).then(function() {
-        sinkOutput(res, 'ok');
+      var vb = EmployeeMapper.mapDBEmployee(body);
+      untyped em.update(vb).then(function() {
       });
     });
     return;
