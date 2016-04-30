@@ -18,6 +18,17 @@ gulp.task('default', function(done) {
     gulp.start('set-task');
 });
 
+// run task
+gulp.task('aaa',  function(done) {
+
+
+    fs.stat('./distrib/out/app.js', function(err, stat) {
+            tasks= ['./injectRoutes.sh'];
+	 gulp.src('test.js')
+                .pipe(shell(tasks));
+});
+});
+
 // set-task, user prompt
 gulp.task('set-task', function(done) {
     gulp.src('test.js')
@@ -48,7 +59,36 @@ gulp.task('run',  function(done) {
 
     fs.stat('./distrib/out/app.js', function(err, stat) {
         if(err == null) {
-            tasks= ['  echo "$VERT" "#PISTAHX: trying to start API" "$NORMAL"'];
+            tasks= ['echo "haxe run"'];
+
+            tasks.push('echo "$VERT" "#APP: refresh Main.hx file" "$NORMAL"\n');
+            tasks.push('cp -rf $WDIR/gen/Main.hx ./distrib/src/Main.hx\n');
+
+            tasks.push('echo "$VERT" "#APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
+            tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
+
+            tasks.push('echo "$VERT" "#APP: generate ./app/Business/TD.hx file from api.yaml with mebyz/yaml2hxzs" "$NORMAL"');
+            tasks.push('input=./app/api.yaml output=./app/Business/TD.hx type=typedef node ./node_modules/pistahx-spec/yaml2hx.js ');
+
+            tasks.push('echo "$VERT" "#APP: generate routes from spec and inject in Main.hx file" "$NORMAL"\n');
+            tasks.push('input=./app/api.yaml output=./app/Business/Routes.hx type=routes node ./node_modules/pistahx-spec/yaml2hx.js\n');
+            tasks.push('./injectRoutes.sh');
+            tasks.push('\n');
+            tasks.push('echo "$VERT" "#APP: Haxe transpilation" "$NORMAL"');
+            tasks.push('cd ./distrib && haxe build.hxml && cd ..');
+
+            tasks.push('echo "$VERT" "#APP: your project output will reside in ./distrib/out/" "$NORMAL"');
+            tasks.push('#rm -rf ./distrib/out');
+            tasks.push('rm -rf ./distrib/out/app.js');
+            tasks.push('mkdir -p ./distrib/out 2>/dev/null || :');
+            tasks.push('cp -rf ./app/api.yaml ./distrib/out/ 2>/dev/null || :');
+            tasks.push('cp -rf ./distrib/app.js ./distrib/out/app.js 2>/dev/null || :');
+            tasks.push('cp -rf ./distrib/node_modules ./distrib/out/ 2>/dev/null || :');
+            tasks.push('cp -rf ./node_modules/pistahx/doc ./distrib/out/ 2>/dev/null || :');
+            tasks.push('cp -rf ./app/conf ./distrib/out/ 2>/dev/null || :');
+            tasks.push('cp -rf ./app/Business/sql ./distrib/out/ 2>/dev/null || :');
+            tasks.push('cp -rf ./.ebignore ./distrib/out/ 2>/dev/null || :');
+            tasks.push('ln -fs ./node_modules/pistahx/doc ./distrib/out/doc');
             tasks.push('  rm -rf ./distrib/out/site');
             tasks.push('  rm -rf ./distrib/out/models');
             tasks.push('  cp -rf ./site/dist/prod ./distrib/out/site');
@@ -67,8 +107,27 @@ gulp.task('run',  function(done) {
 
 // build task, depends on execbuild
 gulp.task('build', ['execbuild'], function(done) {
-    console.log("Build done !");
-    done();
+                tasks= ['echo "haxe build"'];
+
+            tasks.push('echo "$VERT" "#APP: refresh Main.hx file" "$NORMAL"\n');
+            tasks.push('cp -rf ./gen/Main.hx ./distrib/src/Main.hx\n');
+
+            tasks.push('echo "$VERT" "#APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
+            tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
+
+            tasks.push('echo "$VERT" "#APP: generate ./app/Business/TD.hx file from api.yaml with mebyz/yaml2hx" "$NORMAL"');
+            tasks.push('type=typedef input=./app/api.yaml output=./app/Business/TD.hx node ./node_modules/pistahx-spec/yaml2hx.js ');
+
+            tasks.push('echo "$VERT" "#APP: generate routes from spec and inject in Main.hx file" "$NORMAL"\n');
+            tasks.push('input=./app/api.yaml output=./app/Business/Routes.hx type=routes node ./node_modules/pistahx-spec/yaml2hx.js\n');
+            tasks.push('injectRoutes.sh');
+            tasks.push('\n');
+            tasks.push('echo "$VERT" "#APP: Haxe transpilation" "$NORMAL"');
+            tasks.push('cd distrib');
+            tasks.push('haxe build.hxml');
+            tasks.push('cd -');
+            gulp.src('test.js')
+                .pipe(shell(tasks));
 });
 
 // execbuild task, depends on prebuild
@@ -80,6 +139,11 @@ gulp.task('execbuild', ['prebuild'], function(done) {
     .pipe(shell(cmd))
     .on('error', function (err) {
        console.log(err);
+    })
+    .on('end',function(){
+
+
+
     });  
 });
 
@@ -89,7 +153,7 @@ gulp.task('prebuild', function(done) {
 
     if (process.env.mode == 'build') {
         tasks.push('echo "$VERT" "#APP: install project dependencies" "$NORMAL"');
-        tasks.push('npm install');
+       tasks.push('npm install');
     }
 
     tasks.push('echo "$VERT" "#APP: update project dependencies" "$NORMAL"');
@@ -101,12 +165,6 @@ gulp.task('prebuild', function(done) {
         tasks.push('git clone git@github.com:mebyz/pistahx-ui.git site');
     }
     
-    tasks.push('echo "$VERT" "#YOUR_APP: generate db haxe typedefs to ./app/Business/models" "$NORMAL"');
-    tasks.push('node_modules/pistahx-db/bin/sequelize-auto -d Chinook_Sqlite.sqlite -o ./app/Business/models/ -e sqlite -h localhost');
-
-    tasks.push('echo "$VERT" "#APP:generate ./app/Business/TD.hx file from api.yaml with mebyz/yaml2hx" "$NORMAL"');
-    tasks.push('input=./app/api.yaml output=./app/Business/TD.hx node ./node_modules/pistahx-spec/yaml2hx.js ');
-
     tasks.push('echo "$VERT" "#APP: let pistahx do the magic.." "$NORMAL"');
     tasks.push('echo "$VERT" " => codegen, build and run the project using your spec and business logic (./app/ folder)" "$NORMAL"');
     tasks.push('cd $WDIR');

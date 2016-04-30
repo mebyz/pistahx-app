@@ -42,7 +42,7 @@ class Business {
     
     var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
 
-    employee   
+    return employee   
     .findAll({    
          limit : 10
     })    
@@ -50,8 +50,7 @@ class Business {
       var vb = map([emps], function(d) {
           return EmployeeMapper.mapEmployees(d, EmployeeDecorator.decorate);
       }); 
-      sinkOutput(res, Lambda.array(vb[0]));
-      return;   
+      return Lambda.array(vb[0]);
     });
   }
 
@@ -59,7 +58,7 @@ class Business {
     
     var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
 
-    employee   
+    return employee   
     .find({
           where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
     })    
@@ -80,7 +79,7 @@ class Business {
 
     var doutfields = Reflect.fields(body);
 
-    employee.find({ where: [ { 'EmployeeId' : untyped body.id } ],include: [ ],raw:false })
+    return employee.find({ where: [ { 'EmployeeId' : untyped body.id } ],include: [ ],raw:false })
     .then(function(em) {
       var vb = EmployeeMapper.mapDBEmployee(em);
 
