@@ -58,7 +58,6 @@ gulp.task('run',  function(done) {
     process.env.ENV = 'local';
 
     fs.stat('./distrib/out/app.js', function(err, stat) {
-        if(err == null) {
             tasks= ['echo "haxe run"'];
 
             tasks.push('echo "$VERT" "#APP: refresh Main.hx file" "$NORMAL"\n');
@@ -96,9 +95,6 @@ gulp.task('run',  function(done) {
             tasks.push('  cp -rf ./Chinook_Sqlite.sqlite ./distrib/out/');
 
             tasks.push('  ENV=$ENV node ./distrib/out/app.js');        
-        } else {
-            tasks= ['  echo "$ROUGE" "#!ERROR : please build first :)" "$NORMAL"'];
-        }
         return gulp.src('test.js')
                 .pipe(shell(tasks));
     });
