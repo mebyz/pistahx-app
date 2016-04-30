@@ -1,4 +1,4 @@
 typedef DB__PlaylistTrack = {
-    PlaylistId: Int,
-    TrackId: Int
+    ?PlaylistId: Int,
+    ?TrackId: Int
 };

@@ -11,8 +11,6 @@ import js.node.Fs;
 import promhx.Promise.Promise;
 import promhx.Deferred;
 
-import Models;
-
 import haxe.Json.*;
 
 // THX
@@ -26,8 +24,6 @@ using js.node.http.ServerResponse;
 using js.node.http.ClientRequest;
 using js.node.http.IncomingMessage;
 
-class Model extends Models { }
-
 
 // Business : BUSINESS LOGIC :
 // ---------
@@ -35,6 +31,12 @@ class Business {
 
   public static function main() {  }
 
+
+  public static function sinkOutput(res: js.node.http.ServerResponse, d : Dynamic) { 
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(stringify(d));
+    return;
+  }
 
   public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
     
@@ -62,17 +64,44 @@ class Business {
           where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
     })    
     .then(function(emp) {    
-      var vb = map([emp], function(d) {
-          return EmployeeMapper.mapEmployees(d, EmployeeDecorator.decorate);
+      var vb = map([emp], function(e) {
+          return EmployeeMapper.mapEmployees([e], EmployeeDecorator.decorate);
       }); 
       sinkOutput(res, Lambda.array(vb[0]));
       return;   
     });
   }
 
-  public static function sinkOutput(res: js.node.http.ServerResponse, d : Dynamic) { 
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(stringify(d));
+  public static function put_employee(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
+    
+    var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
+    
+    var body = Reflect.field(req,'body');
+
+    var doutfields = Reflect.fields(body);
+
+    employee.find({ where: [ { 'EmployeeId' : untyped body.id } ],include: [ ],raw:false })
+    .then(function(em) {
+      var vb = EmployeeMapper.mapDBEmployee(em);
+
+      trace(vb);
+      
+      var dout = untyped {};
+      for (f in doutfields){
+        if (f != 'id' 
+          &&
+          Reflect.field(vb,f) 
+           != Reflect.field(body,f) )
+        {
+          Reflect.setField(dout,f,Reflect.field(body,f));
+        }
+      
+      } 
+
+      untyped em.update(dout).then(function() {
+        sinkOutput(res, 'ok');
+      });
+    });
     return;
   }
 /*

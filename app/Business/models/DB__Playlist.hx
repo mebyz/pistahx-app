@@ -1,4 +1,4 @@
 typedef DB__Playlist = {
-    PlaylistId: Int,
-    Name: String
+    ?PlaylistId: Int,
+    ?Name: String
 };

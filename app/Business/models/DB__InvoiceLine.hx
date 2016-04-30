@@ -1,7 +1,7 @@
 typedef DB__InvoiceLine = {
-    InvoiceLineId: Int,
-    InvoiceId: Int,
-    TrackId: Int,
-    UnitPrice: Bool,
-    Quantity: Int
+    ?InvoiceLineId: Int,
+    ?InvoiceId: Int,
+    ?TrackId: Int,
+    ?UnitPrice: Bool,
+    ?Quantity: Int
 };

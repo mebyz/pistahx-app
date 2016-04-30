@@ -1,4 +1,4 @@
 typedef DB__Genre = {
-    GenreId: Int,
-    Name: String
+    ?GenreId: Int,
+    ?Name: String
 };
