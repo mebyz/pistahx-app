@@ -68,6 +68,8 @@ paths:
       - "Employees"
       summary: "{'ttl':0,'xttl':0,'cachekey':'','xcachekey':''}"
       description: "/employee saves an employee"
+      x-cache-flush: 
+      - "/employees"
       parameters:
       - name: "employee"
         in: "body"
