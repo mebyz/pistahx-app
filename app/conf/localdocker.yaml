@@ -1,0 +1,38 @@
+APP_NAME: pistahx_app
+ENV_NAME: localdocker
+#ELK_SERVER: to be defined
+#JWT_SECRET: local_secret_key
+#JWT_TTL: 3600
+CACHE_OUT_TTL_DEFAULT: 60
+#GOOGLE_CLIENT_ID: to be defined
+#GOOGLE_CLIENT_SECRET: to be defined
+#GOOGLE_CALLBACK_URL: http://localhost:3000/callback
+REDIS_HOST: 10.0.2.2
+REDIS_PORT: 6379
+DB_HOST:
+DB_USER:
+DB_PASSWORD:
+DB_NAME:
+DB_OPTIONS: 
+  dialect: sqlite
+  storage: Chinook_Sqlite.sqlite
+  pool: 
+    max: 5
+    min: 0
+    idle: 10000
+  dialectOptions:
+    encrypt: true
+  logging: true
+SESSION_TTL: 3600
+BASE_URL: /api/v1
+API_PORT: 3000
+API_ROUTE_STATUS: /users/me/status
+#API_CORS_ALLOWED:
+#  - "http://localhost:9000"
+#  - "http://localhost:8080"
+#  - "http://localhost:3000"
+#S3_ID: "to be defined"
+#S3_KEY: "to be defined"
+#S3_BUCKET: "to be defined"
+#S3_REGION: "to be defined"
+#S3_FOLDER: "to be defined"

@@ -15,3 +15,10 @@ https://github.com/mebyz/pistahx-app uses:
 npm install --only=dev
 
 gulp
+
+# docker run (see Dockerfile for details)
+
+docker build [params] .
+docker run -e ENV=localdocker [imageid]
+
+
