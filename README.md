@@ -19,6 +19,7 @@ gulp
 # docker run (see Dockerfile for details)
 
 docker build [params] .
+
 docker run -e ENV=localdocker [imageid]
 
 
