@@ -2,7 +2,6 @@ distrib/
 node_modules/
 .DS_Store
 #these files are pulled from pistahx#
-Dockerfile
 docker.sh
 site/
 site/*
