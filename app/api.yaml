@@ -15,22 +15,6 @@ produces:
 - application/json
 basePath: /api/v1
 paths:
-  /users:
-    get:
-      operationId: users
-      tags:
-      - "Users"
-      summary: "{'ttl':0,'xttl':0,'cachekey':'','xcachekey':''}"
-      description: "Users"
-      parameters:
-      - name: "someheaderkey"
-        in: "header"
-        description: "Some Key Id"
-        required: false
-        type: "string"
-      responses:
-        200:
-          description: "200 is returned"
   /employees:
     get:
       operationId: employees
