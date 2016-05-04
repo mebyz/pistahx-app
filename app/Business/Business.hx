@@ -66,7 +66,7 @@ class Business {
       DbRepos.dbEmployees.findAll({
         limit : 5
       }).then(function (dbEmployeesRes) {
-        return dbEmployeesRes.map(EmployeeMapper.dBEmployeeToEmployee); // Le repo devrait exposer les objets business.
+        return dbEmployeesRes.map(EmployeeMapper.dbEmployeeToEmployee); // Le repo devrait exposer les objets business.
       });
 
   }
@@ -77,7 +77,7 @@ class Business {
       DbRepos.dbEmployees.find({
          where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
       }).then(function (dbEmployeeRes) {
-        return EmployeeMapper.dBEmployeeToEmployee(dbEmployeeRes);
+        return EmployeeMapper.dbEmployeeToEmployee(dbEmployeeRes);
       });
   }
 /*

@@ -5,3 +5,4 @@ node_modules/
 docker.sh
 site/
 site/*
+build.hxml

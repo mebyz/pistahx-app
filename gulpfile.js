@@ -18,16 +18,6 @@ gulp.task('default', function(done) {
     gulp.start('set-task');
 });
 
-// run task
-gulp.task('aaa',  function(done) {
-
-
-    fs.stat('./distrib/out/app.js', function(err, stat) {
-            tasks= ['./injectRoutes.sh'];
-	 gulp.src('test.js')
-                .pipe(shell(tasks));
-});
-});
 
 // set-task, user prompt
 gulp.task('set-task', function(done) {
@@ -53,7 +43,7 @@ gulp.task('set-task', function(done) {
 });
 
 // run task
-gulp.task('run',  function(done) {
+gulp.task('run', function(done) {
 
     process.env.ENV = 'local';
 
@@ -74,7 +64,11 @@ gulp.task('run',  function(done) {
             tasks.push('./injectRoutes.sh');
             tasks.push('\n');
             tasks.push('echo "$VERT" "#APP: Haxe transpilation" "$NORMAL"');
-            tasks.push('cd ./distrib && haxe build.hxml && cd ..');
+            tasks.push('haxe build.hxml');
+
+            tasks.push('echo "$VERT" "#PISTAHX: generating haxe doc (dox)" "$NORMAL"\n');
+            tasks.push('haxelib run dox -i distrib/xml -o ./distrib/out/pages\n');
+            tasks.push('cd ..\n');
 
             tasks.push('echo "$VERT" "#APP: your project output will reside in ./distrib/out/" "$NORMAL"');
             tasks.push('#rm -rf ./distrib/out');
@@ -137,8 +131,6 @@ gulp.task('execbuild', ['prebuild'], function(done) {
        console.log(err);
     })
     .on('end',function(){
-
-
 
     });  
 });
