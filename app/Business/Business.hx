@@ -40,7 +40,7 @@ typedef DBEmployees = {
 @:publicFields
 class DbRepos {
 
-  static var dbEmployees : DBEmployees;
+  var dbEmployees : DBEmployees;
 
   function new(db : Sequelize) {
     dbEmployees = db.import_("models/Employee.js");
@@ -62,8 +62,10 @@ class Business {
 
   public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Employee>> {    
 
+    var dbr = new DbRepos(db);
+
     return
-      DbRepos.dbEmployees.findAll({
+      dbr.dbEmployees.findAll({
         limit : 5
       }).then(function (dbEmployeesRes) {
         return dbEmployeesRes.map(EmployeeMapper.dbEmployeeToEmployee); // Le repo devrait exposer les objets business.
@@ -73,8 +75,10 @@ class Business {
 
   public static function get_employee(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Employee> {
   
+    var dbr = new DbRepos(db);
+
     return
-      DbRepos.dbEmployees.find({
+      dbr.dbEmployees.find({
          where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
       }).then(function (dbEmployeeRes) {
         return EmployeeMapper.dbEmployeeToEmployee(dbEmployeeRes);
