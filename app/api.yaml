@@ -15,6 +15,37 @@ produces:
 - application/json
 basePath: /api/v1
 paths:
+#  /////// 0
+#  /albums:
+#    get:
+#      operationId: albums
+#      tags:
+#      - "Albums"
+#      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+#      description: "/albums returns a list of album"
+#      responses:
+#        200:
+#          description: "An array of albums"
+#          schema:
+#            $ref: "#/definitions/Albums"
+#  /album/{AlbumId}:
+#    get:
+#      operationId: album
+#      tags:
+#      - "Albums"
+#      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+#      description: "/album/{AlbumId} returns an album"
+#      parameters:
+#      - name: "AlbumId"
+#        in: "path"
+#        description: "AlbumId"
+#        required: true
+#        type: "integer"
+#      responses:
+#        200:
+#          description: "An album"
+#          schema:
+#            $ref: "#/definitions/Album"
   /employees:
     get:
       operationId: employees
@@ -65,6 +96,30 @@ paths:
         200:
           description: "200 is returned"
 definitions:
+#  //// 1
+#  Albums:   
+#    type: "object"    
+#    properties:   
+#      result:   
+#        type: "array"   
+#        items:    
+#          $ref: "#/definitions/Album"   
+#  Album:    
+#    x-dto-model : "Album"
+#    type: "object"    
+#    properties:   
+#      id:  
+#        x-dto-field: "AlbumId"
+#        type: "integer"   
+#        description: "Unique identifier representing a specific Album"    
+#      title :   
+#        x-dto-field: "Title"
+#        type: "string"    
+#        description: ""    
+#      artistName :   
+#        x-dto-field: "Artist.Name"
+#        type: "string"    
+#        description: ""    
   Employees:   
     type: "object"    
     properties:   

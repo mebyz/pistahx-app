@@ -24,28 +24,6 @@ using js.node.http.ServerResponse;
 using js.node.http.ClientRequest;
 using js.node.http.IncomingMessage;
 
-typedef EmployeesFindAllOptions = {
-  limit : Int
-}
-
-typedef EmployeesFindOptions = {
-  where : Array<Dynamic>
-}
-
-typedef DBEmployees = {
-  findAll : Business.EmployeesFindAllOptions -> Promise<Array<DB__Employee>>,
-  find : Business.EmployeesFindOptions -> Promise<DB__Employee>
-}
-
-@:publicFields
-class DbRepos {
-
-  var dbEmployees : DBEmployees;
-
-  function new(db : Sequelize) {
-    dbEmployees = db.import_("models/Employee.js");
-  }
-}
 
 // Business : BUSINESS LOGIC :
 // ---------
@@ -60,6 +38,38 @@ class Business {
     return;
   }
 
+
+////// # 5
+//  public static function get_albums(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Album>> {    
+//
+//    var dbr = new DbRepos(db);
+//
+//    return
+//      dbr.dbAlbums.findAll({
+//        limit : 5,
+//        raw:true,
+//        include : [{model: dbr.dbArtist, as: 'Artist'}]
+//      }).then(function (dbAlbumRes) {
+//        return dbAlbumRes.map(AlbumMapper.dbAlbumToAlbum); 
+//      });
+//
+//  }
+//
+//  public static function get_album(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Album> {
+//  
+//    var dbr = new DbRepos(db);
+//
+//    return
+//      dbr.dbAlbums.find({
+//         where: [ { 'AlbumId' : untyped req.params.AlbumId } ],
+//         raw:true,
+//         include : [{model: dbr.dbArtist, as: 'Artist'}]
+//      }).then(function (dbAlbumRes) {
+//        return AlbumMapper.dbAlbumToAlbum(dbAlbumRes);
+//      });
+//  }
+
+
   public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Employee>> {    
 
     var dbr = new DbRepos(db);
@@ -68,7 +78,7 @@ class Business {
       dbr.dbEmployees.findAll({
         limit : 5
       }).then(function (dbEmployeesRes) {
-        return dbEmployeesRes.map(EmployeeMapper.dbEmployeeToEmployee); // Le repo devrait exposer les objets business.
+        return dbEmployeesRes.map(EmployeeMapper.dbEmployeeToEmployee); 
       });
 
   }
