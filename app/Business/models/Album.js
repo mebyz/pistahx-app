@@ -2,6 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Album', {
     AlbumId: {
       primaryKey: true,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: undefined

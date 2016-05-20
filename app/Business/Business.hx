@@ -17,12 +17,74 @@ import haxe.Json.*;
 import thx.core.*;
 import thx.Iterables.*;
 
-import Business_AST;
 import TD;
 
 using js.node.http.ServerResponse;
 using js.node.http.ClientRequest;
 using js.node.http.IncomingMessage;
+
+
+class EmployeeDecorator { 
+    public static function decorate(b : Employee): Employee { 
+        b.lastName+=' :)'; // sample use
+        return b; 
+    }
+}
+
+class IdentityDecorator { 
+    public static function decorate(t : Dynamic): Dynamic { 
+        return t; 
+    }
+}
+
+////// # 2
+//typedef DBAlbums = {
+//  findAll : FindAllOptions -> Promise<Array<DB__Album>>,
+//  find : FindOptions -> Promise<DB__Album>
+//}
+//
+//typedef DBArtists = {
+//  findAll : FindAllOptions -> Promise<Array<DB__Album>>,
+//  find : FindOptions -> Promise<DB__Album>
+//}
+
+typedef DBEmployees = {
+  findAll : FindAllOptions -> Promise<Array<DB__Employee>>,
+  find : FindOptions -> Promise<DB__Employee>
+}
+
+@:publicFields
+class DbRepos {
+
+  var dbEmployees : DBEmployees;
+
+  ////// # 3
+  //typedef DBAlbums = {  var dbAlbums : DBAlbums;
+  //var dbArtist : DBArtists;
+
+  function new(db : Sequelize) {
+    dbEmployees = db.import_("models/Employee.js");
+    ////// # 4
+    //dbAlbums = db.import_("models/Album.js");
+    //dbArtist = db.import_("models/Artist.js");
+  
+    untyped dbAlbums.belongsTo(dbArtist, {foreignKey: 'ArtistId'});
+  }
+
+}
+
+typedef FindAllOptions = {
+  ?limit : Int,
+  ?include : Array<Dynamic>,
+  ?raw : Bool,
+  ?order : String
+}
+
+typedef FindOptions = {
+  ?where : Array<Dynamic>,
+  ?include : Array<Dynamic>,
+  ?raw : Bool 
+}
 
 
 // Business : BUSINESS LOGIC :
