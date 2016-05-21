@@ -94,7 +94,6 @@ gulp.task('pack', function(done) {
             tasks.push('ln -fs ./node_modules/pistahx/doc ./distrib/out/doc');
             tasks.push('  rm -rf ./distrib/out/site');
             tasks.push('  rm -rf ./distrib/out/models');
-            tasks.push('  cp -rf ./site/dist/prod ./distrib/out/site');
             tasks.push('  cp -rf ./app/Business/models ./distrib/out/models');
             tasks.push('  cp -rf ./Chinook_Sqlite.sqlite ./distrib/out/');
 
@@ -150,7 +149,6 @@ gulp.task('run', function(done) {
             tasks.push('ln -fs ./node_modules/pistahx/doc ./distrib/out/doc');
             tasks.push('  rm -rf ./distrib/out/site');
             tasks.push('  rm -rf ./distrib/out/models');
-            tasks.push('  cp -rf ./site/dist/prod ./distrib/out/site');
             tasks.push('  cp -rf ./app/Business/models ./distrib/out/models');
             tasks.push('  cp -rf ./Chinook_Sqlite.sqlite ./distrib/out/');
 
