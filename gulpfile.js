@@ -44,7 +44,12 @@ gulp.task('set-task', function(done) {
 
 // run task
 gulp.task('run', function(done) {
-
+    process.env.VERT="\\033[1;32m";
+    process.env.NORMAL="\\033[0;39m";
+    process.env.ROUGE="\\033[1;31m";
+    process.env.WDIR="./node_modules/pistahx";
+    process.env.PROJDIR=__dirname;
+    process.env.mode = 'run';
     process.env.ENV = 'local';
 
     fs.stat('./distrib/out/app.js', function(err, stat) {
@@ -97,7 +102,8 @@ gulp.task('run', function(done) {
 
 // build task, depends on execbuild
 gulp.task('build', ['execbuild'], function(done) {
-                tasks= ['echo "haxe build"'];
+            process.env.mode = 'build';
+            tasks= ['echo "haxe build"'];
 
             tasks.push('echo "$VERT" "#APP: refresh Main.hx file" "$NORMAL"\n');
             tasks.push('cp -rf ./gen/Main.hx ./distrib/src/Main.hx\n');
@@ -122,6 +128,12 @@ gulp.task('build', ['execbuild'], function(done) {
 
 // execbuild task, depends on prebuild
 gulp.task('execbuild', ['prebuild'], function(done) {
+    process.env.VERT="\\033[1;32m";
+    process.env.NORMAL="\\033[0;39m";
+    process.env.ROUGE="\\033[1;31m";
+    process.env.WDIR="./node_modules/pistahx";
+    process.env.PROJDIR=__dirname;
+    process.env.mode = 'build';
     // this will execute pistahx's gulpfile.js !
     process.chdir(process.env.WDIR);
     var cmd = 'mode=build prj=../../ root=./ gulp build';

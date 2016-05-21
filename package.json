@@ -26,8 +26,8 @@
     "cross-env": "^1.0.7",
     "mocha": "2.3.4",
     "mocha-junit-reporter": "1.9.1",
-    "pistahx-db": "github:mebyz/pistahx-db",
-    "pistahx-spec": "github:mebyz/pistahx-spec",
+    "pistahx-db": "https://github.com/mebyz/pistahx-db",
+    "pistahx-spec": "https://github.com/mebyz/pistahx-spec",
     "swagger-test": "0.3.0"
   },
   "devDependencies": {

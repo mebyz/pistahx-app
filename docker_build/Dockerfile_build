@@ -1,0 +1,10 @@
+FROM imsky/haxe
+MAINTAINER emmanuel.botros@gmail.com
+WORKDIR /app
+COPY . /app
+RUN apt-get install -y git
+RUN npm install -g gulp
+RUN npm install --only=dev
+RUN echo "y" | haxelib install ./node_modules/pistahx/gen/libs.hxml
+EXPOSE  8081
+CMD ["gulp","build"]
