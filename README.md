@@ -34,7 +34,7 @@ docker run -d pistahx/build tail -f /dev/null
 
 docker ps (get your container id)
 
-docker cp <container_id>:/app/distrib/out ./distrib/
+docker cp <container_id>:/app/distrib/out ./distrib/out
 
 ```
 => your built app now resides in distrib/out
