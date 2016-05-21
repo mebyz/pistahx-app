@@ -30,6 +30,10 @@ gulp run
 ```
 docker build -f Dockerfile.build -t pistahx/build .
 
+docker run -d pistahx/build tail -f /dev/null
+
+docker ps (get your container id)
+
 docker cp <container_id>:/app/distrib/out ./distrib/
 
 ```
