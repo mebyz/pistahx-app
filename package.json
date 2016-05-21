@@ -24,11 +24,11 @@
   "dependencies": {
     "colors": "^1.1.2",
     "cross-env": "^1.0.7",
-    "mocha": "2.3.4",
-    "mocha-junit-reporter": "1.9.1",
     "pistahx-db": "https://github.com/mebyz/pistahx-db",
     "pistahx-spec": "https://github.com/mebyz/pistahx-spec",
-    "swagger-test": "0.3.0"
+    "swagger-test": "0.3.0",
+    "mocha": "2.3.4",
+    "mocha-junit-reporter": "1.9.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -36,6 +36,6 @@
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
     "inquirer": "1.0.2",
-    "pistahx": "github:mebyz/pistahx"
+    "pistahx": "https://github.com/mebyz/pistahx"
   }
 }

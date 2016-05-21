@@ -10,20 +10,18 @@ https://github.com/mebyz/pistahx-app uses:
 
 - https://github.com/mebyz/pistahx-ui	
 
-# local build & run
+#BUILD AND RUN LOCALLY
 
 npm install -g gulp
 npm install --only=dev
 haxelib install ./node_modules/pistahx/gen/libs.hxml
 gulp
 
-# docker build (see Dockerfile.build for details)
+#*******
+
+#BUILD LOCAL APP USING DOCKER (your result package will reside in ./distrib/out)
 
 docker build -f Dockerfile.build -t pistahx/build .
-docker run pistahx/build .
+docker cp <container_id>:/app/distrib/out ./distrib/
 
-# docker run (see Dockerfile for details)
-docker build -f Dockerfile -t pistahx/run .
-docker run -e ENV=localdocker pistahx/run .
-
-
+=> your built app now resides in distrib/out
