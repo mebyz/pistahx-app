@@ -38,4 +38,6 @@ RUN gulp build
 
 RUN gulp pack
 
+RUN cp -rf node_modules/* distrib/out/node_modules/
+
 CMD ["ls", "/app/distrib/out"]

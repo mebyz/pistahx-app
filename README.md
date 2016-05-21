@@ -30,11 +30,9 @@ gulp run
 ```
 docker build -f Dockerfile.build -t pistahx/build .
 
-docker run -d pistahx/build tail -f /dev/null
+docker run -d --name pistahx_build pistahx/build tail -f /dev/null
 
-docker ps (get your container id)
-
-docker cp <container_id>:/app/distrib/out ./distrib/out
+docker cp pistahx_build:/app/distrib/out ./distrib/out
 
 ```
 => your built app now resides in distrib/out
