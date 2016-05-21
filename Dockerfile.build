@@ -2,12 +2,12 @@ FROM imsky/haxe
 MAINTAINER emmanuel.botros@gmail.com
 WORKDIR /app
 COPY . /app
-RUN curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 RUN apt-get install -y nodejs git python-pip python-dev build-essential
-RUN npm install -g gulp  node-gyp
+RUN sudo npm install -g gulp  node-gyp
 RUN PYTHON=$PYTHON:/usr/bin/python
 RUN export PYTHON
-RUN sudo npm install -g git://github.com/RuntimeTools/appmetrics
+RUN sudo npm install -g git://github.com/RuntimeTools/appmetrics appmetrics-elk
 RUN npm install --only=dev
 RUN echo "y" | haxelib install ./node_modules/pistahx/gen/libs.hxml
 EXPOSE  8081
