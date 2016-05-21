@@ -2,8 +2,9 @@ FROM imsky/haxe
 MAINTAINER emmanuel.botros@gmail.com
 WORKDIR /app
 COPY . /app
-RUN apt-get install -y git
-RUN npm install -g gulp
+RUN curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+RUN apt-get install -y nodejs git 
+RUN npm install -g gulp  node-gyp appmetrics
 RUN npm install --only=dev
 RUN echo "y" | haxelib install ./node_modules/pistahx/gen/libs.hxml
 EXPOSE  8081
