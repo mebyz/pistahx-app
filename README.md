@@ -1,34 +1,46 @@
-#pistahx-app : sample HAXE Webapi using pistahx, pistahx-db, pistahx-spec
+#pistahx-app 
+(sample Haxe api using pistahx, pistahx-db, pistahx-spec)
 
-https://github.com/mebyz/pistahx-app uses:
+### 1. BUILD LOCALLY
 
-- https://github.com/mebyz/pistahx
 
-- https://github.com/mebyz/pistahx-db
-
-- https://github.com/mebyz/pistahx-spec
-
-- https://github.com/mebyz/pistahx-ui	
-
-#BUILD AND RUN LOCALLY
-
+```
 npm install -g gulp
 
 npm install --only=dev
 
 haxelib install ./node_modules/pistahx/gen/libs.hxml
 
-gulp
+gulp build
+
+```
+
+### 2. RUN LOCALLY
+
+```
+gulp run
+
+```
+
+#OR
+
+### 1. BUILD FROM DOCKER (you can also use this image hosted on dockerhub : mebyz/pistahx-docker-build-stack)
 
 
-# OR BUILD LOCAL APP USING DOCKER (your result package will reside in ./distrib/out)
-
+```
 docker build -f Dockerfile.build -t pistahx/build .
 
 docker cp <container_id>:/app/distrib/out ./distrib/
 
+```
 => your built app now resides in distrib/out
 
+### 2. RUN FROM DOCKER 
+
+
+```
 docker build -f Dockerfile -t pistahx/run .
 
 docker run pistahx/run
+
+```
