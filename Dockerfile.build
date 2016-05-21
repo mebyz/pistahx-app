@@ -18,21 +18,23 @@ RUN export PYTHON
 
 # npm libs
 RUN npm install --unsafe-perm -g gulp  
-RUN npm install --unsafe-perm  node-gyp 
-RUN npm install --unsafe-perm  microtime  
-RUN npm install --unsafe-perm  sqlite3
-RUN npm install --unsafe-perm  mssql
+RUN npm install --unsafe-perm node-gyp 
+RUN npm install --unsafe-perm microtime  
+RUN npm install --unsafe-perm -g sqlite3
+RUN npm install --unsafe-perm -g mssql
 #RUN npm install --unsafe-perm -g https://github.com/RuntimeTools/appmetrics
 #RUN npm install --unsafe-perm -g appmetrics-elk
 
+RUN rm -rf *
+RUN git clone https://github.com/mebyz/pistahx-app .
+
 # app dependencies
-COPY package.json /app/package.json
 RUN npm install --unsafe-perm --only=dev
 
 # haxe libs
 RUN echo "y" | haxelib install ./node_modules/pistahx/gen/libs.hxml
 
-COPY . /app
+RUN npm install sqlite3
 
 RUN gulp build
 

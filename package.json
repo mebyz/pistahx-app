@@ -36,6 +36,7 @@
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
     "inquirer": "1.0.2",
-    "pistahx": "https://github.com/mebyz/pistahx"
+    "pistahx": "https://github.com/mebyz/pistahx",
+    "sqlite3": "github.com/mapbox/node-sqlite3"
   }
 }

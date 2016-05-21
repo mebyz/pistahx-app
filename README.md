@@ -24,8 +24,7 @@ gulp run
 
 #OR
 
-### 1. BUILD FROM DOCKER (you can also use this image hosted on dockerhub : mebyz/pistahx-docker-build-stack)
-
+### 1. BUILD FROM DOCKER
 
 ```
 docker build -f Dockerfile.build -t pistahx/build .
