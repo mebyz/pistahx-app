@@ -67,8 +67,7 @@ class DbRepos {
     ////// # 4
     //dbAlbums = db.import_("models/Album.js");
     //dbArtist = db.import_("models/Artist.js");
-  
-    untyped dbAlbums.belongsTo(dbArtist, {foreignKey: 'ArtistId'});
+    //untyped dbAlbums.belongsTo(dbArtist, {foreignKey: 'ArtistId'});
   }
 
 }

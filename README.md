@@ -36,12 +36,13 @@ docker cp pistahx_build:/app/distrib/out ./distrib/out
 ```
 => your built app now resides in distrib/out
 
-### 2. RUN FROM DOCKER 
-
-
-```
-docker build -f Dockerfile -t pistahx/run .
-
-docker run pistahx/run
+### 2. RUN WITH DOCKER-COMPOSE
 
 ```
+docker-compose build
+
+docker-compose up
+
+```
+
+
