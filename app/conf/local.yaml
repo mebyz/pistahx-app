@@ -3,7 +3,7 @@ ENV_NAME: local
 #ELK_SERVER: to be defined
 #JWT_SECRET: local_secret_key
 #JWT_TTL: 3600
-CACHE_OUT_TTL_DEFAULT: 60
+CACHE_OUT_TTL_DEFAULT: 0
 #GOOGLE_CLIENT_ID: to be defined
 #GOOGLE_CLIENT_SECRET: to be defined
 #GOOGLE_CALLBACK_URL: http://localhost:3000/callback

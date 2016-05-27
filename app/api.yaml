@@ -15,7 +15,6 @@ produces:
 - application/json
 basePath: /api/v1
 paths:
-#  /////// 0
 #  /albums:
 #    get:
 #      operationId: albums
@@ -51,7 +50,7 @@ paths:
       operationId: employees
       tags:
       - "Employees"
-      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+      summary: "{'ttl':1,'xttl':1,'cachekey':'','xcachekey':''}"
       description: "/employees returns a list of employee"
       responses:
         200:
@@ -63,7 +62,7 @@ paths:
       operationId: employee
       tags:
       - "Employees"
-      summary: "{'ttl':3600,'xttl':3600,'cachekey':'','xcachekey':''}"
+      summary: "{'ttl':1,'xttl':1,'cachekey':'','xcachekey':''}"
       description: "/employee/{EmployeeId} returns an employee"
       parameters:
       - name: "EmployeeId"
@@ -96,7 +95,6 @@ paths:
         200:
           description: "200 is returned"
 definitions:
-#  //// 1
 #  Albums:   
 #    type: "object"    
 #    properties:   

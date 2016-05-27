@@ -23,6 +23,8 @@ using js.node.http.ServerResponse;
 using js.node.http.ClientRequest;
 using js.node.http.IncomingMessage;
 
+using Main.PistahxRequest;
+
 
 class EmployeeDecorator { 
     public static function decorate(b : Employee): Employee { 
@@ -37,7 +39,7 @@ class IdentityDecorator {
     }
 }
 
-////// # 2
+//// # 2
 //typedef DBAlbums = {
 //  findAll : FindAllOptions -> Promise<Array<DB__Album>>,
 //  find : FindOptions -> Promise<DB__Album>
@@ -50,7 +52,8 @@ class IdentityDecorator {
 
 typedef DBEmployees = {
   findAll : FindAllOptions -> Promise<Array<DB__Employee>>,
-  find : FindOptions -> Promise<DB__Employee>
+  find : FindOptions -> Promise<DB__Employee>,
+  update : Dynamic -> Promise<DB__Employee>
 }
 
 @:publicFields
@@ -58,13 +61,13 @@ class DbRepos {
 
   var dbEmployees : DBEmployees;
 
-  ////// # 3
-  //typedef DBAlbums = {  var dbAlbums : DBAlbums;
+  //// # 3
+  //var dbAlbums : DBAlbums;
   //var dbArtist : DBArtists;
 
   function new(db : Sequelize) {
     dbEmployees = db.import_("models/Employee.js");
-    ////// # 4
+    //// # 4
     //dbAlbums = db.import_("models/Album.js");
     //dbArtist = db.import_("models/Artist.js");
     //untyped dbAlbums.belongsTo(dbArtist, {foreignKey: 'ArtistId'});
@@ -100,8 +103,8 @@ class Business {
   }
 
 
-////// # 5
-//  public static function get_albums(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Album>> {    
+//// # 5
+//  public static function get_albums(db : Sequelize,req : PistahxRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Album>> {    
 //
 //    var dbr = new DbRepos(db);
 //
@@ -116,13 +119,13 @@ class Business {
 //
 //  }
 //
-//  public static function get_album(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Album> {
+//  public static function get_album(db : Sequelize,req : PistahxRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Album> {
 //  
 //    var dbr = new DbRepos(db);
 //
 //    return
 //      dbr.dbAlbums.find({
-//         where: [ { 'AlbumId' : untyped req.params.AlbumId } ],
+//         where: [ { 'AlbumId' : req.params.AlbumId } ],
 //         raw:true,
 //         include : [{model: dbr.dbArtist, as: 'Artist'}]
 //      }).then(function (dbAlbumRes) {
@@ -131,7 +134,7 @@ class Business {
 //  }
 
 
-  public static function get_employees(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Employee>> {    
+  public static function get_employees(db : Sequelize,req : PistahxRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Array<Employee>> {    
 
     var dbr = new DbRepos(db);
 
@@ -144,31 +147,32 @@ class Business {
 
   }
 
-  public static function get_employee(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Employee> {
+  public static function get_employee(db : Sequelize,req : PistahxRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Employee> {
   
     var dbr = new DbRepos(db);
 
     return
       dbr.dbEmployees.find({
-         where: [ { 'EmployeeId' : untyped req.params.EmployeeId } ]
+         where: [ { 'EmployeeId' : req.params.EmployeeId } ]
       }).then(function (dbEmployeeRes) {
         return EmployeeMapper.dbEmployeeToEmployee(dbEmployeeRes);
       });
   }
-/*
-  public static function put_employee(db : Sequelize,req : ClientRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) {
+
+  public static function put_employee(db : Sequelize,req : PistahxRequest, res : ServerResponse, dbcacher : Dynamic,outputcacher : Dynamic, extra : Dynamic) : Promise<Employee> {
     
-    var employee : Dynamic = untyped __js__('db.import("models/Employee.js");');
-    
+    var dbr = new DbRepos(db);
+
     var body = Reflect.field(req,'body');
     var doutfields = Reflect.fields(body);
-    return employee.find({ where: [ { 'EmployeeId' : untyped body.id } ],include: [ ],raw:false })
+    
+    return dbr.dbEmployees.find({ where: [ { 'EmployeeId' :  body.id } ],include: [ ],raw:false })
     .then(function(em) {
-      var vb = EmployeeMapper.mapDBEmployee(body);
-      untyped em.update(vb).then(function() {
+      var vb = EmployeeMapper.employeeToDbEmployee(body);
+      return untyped em.update(vb).then(function() {
+        return vb;
       });
     });
-    return;
   }
-*/
+
 }
