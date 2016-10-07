@@ -22,20 +22,20 @@
   },
   "homepage": "https://github.com/mebyz/pistahx-app#readme",
   "dependencies": {
-    "colors": "^1.1.2",
-    "cross-env": "^1.0.7",
+    "colors": "1.1.2",
+    "cross-env": "3.1.1",
     "pistahx-db": "https://github.com/mebyz/pistahx-db",
     "pistahx-spec": "https://github.com/mebyz/pistahx-spec",
     "swagger-test": "0.3.0",
-    "mocha": "2.3.4",
-    "mocha-junit-reporter": "1.9.1"
+    "mocha": "3.1.0",
+    "mocha-junit-reporter": "1.12.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-prompt": "^0.2.0",
-    "gulp-shell": "^0.5.2",
-    "gulp-util": "^3.0.7",
-    "inquirer": "1.0.2",
+    "gulp": "3.9.1",
+    "gulp-prompt": "0.2.0",
+    "gulp-shell": "0.5.2",
+    "gulp-util": "3.0.7",
+    "inquirer": "1.2.1",
     "pistahx": "https://github.com/mebyz/pistahx"
   }
 }
